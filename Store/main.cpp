@@ -6,7 +6,7 @@
 
 void cheapestProduct(const std::vector<Product>& products) {
     
-    if (products.size() == 0) std::cout << "The list is empty\n";
+    if (products.size() == 0) std::cout << "No products\n";
     else {
         double cheapestPrice = products[0].price;
         int cheapestNumber = 0;

@@ -52,6 +52,23 @@ void calculateSum(const std::vector<Product>& products) {
     std::cout << "the sum of all purchases is: " << sum;
 }
 
+void cheapestProduct(const std::vector<Product>& products) {
+    if (products.size() == 0) std::cout << "No products\n";
+    else {
+        double cheapestPrice = products[0].price;
+        int cheapestNumber = 0;
+        for (size_t i = 1; i < products.size(); i++) {
+            if (products[i].price < cheapestPrice) {
+                cheapestPrice = products[i].price;
+                cheapestNumber = i;
+            }
+        }
+        std::cout << "The cheapest product is " << cheapestNumber + 1 << ". "
+            << std::left << std::setw(10) << products[cheapestNumber].name
+            << std::fixed << std::setprecision(2) << products[cheapestNumber].price << " EUR\n";
+    }
+}
+
 int main() {
 
     std::vector<Product> products = {
@@ -65,6 +82,7 @@ int main() {
         std::cout << "\n=== Store ===\n";
         std::cout << "1. Show products\n";
         std::cout << "2. Show sum of all purchase totals \n";
+        std::cout << "3. Cheapest product\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::cin >> choice;
@@ -76,6 +94,9 @@ int main() {
             break;
         case 2:
             calculateSum(products);
+            break;
+        case 3:
+            cheapestProduct(products);
             break;
         case 0:
             std::cout << "Bye!\n";

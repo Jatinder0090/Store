@@ -2,7 +2,7 @@
 #include <vector>
 #include <iomanip>
 #include "product.h"
-
+using namespace std;    
 void showProducts(const std::vector<Product>& products) {
     for (size_t i = 0; i < products.size(); i++) {
         std::cout << i + 1 << ". "
@@ -10,6 +10,39 @@ void showProducts(const std::vector<Product>& products) {
             << std::fixed << std::setprecision(2) << products[i].price << " EUR"
             << "   quantity: " << products[i].quantity << "\n";
     }
+  
+}
+
+void chooseProduct(const std::vector<Product>& products) {
+
+    int productChoice;
+    int quantity;
+
+
+    cout << "Enter product number: " <<endl;
+    cin >> productChoice;
+
+    if (productChoice < 1 || productChoice > products.size()) {
+        cout << "Invalid product selection.\n";
+        return;
+    }
+
+    cout << "Enter the quantity you want to buy: ";
+    cin >> quantity;
+
+    if (quantity <= 0) {
+        cout << "Invalid quantity. Please enter a positive number.\n";
+        return;
+    }
+
+    if (quantity > products[productChoice - 1].quantity) {
+        cout << "Not enough stock available.\n";
+        return;
+    }
+
+    cout << "You have chosen to buy "
+        << quantity << " of "
+        << products[productChoice - 1].name << ".\n";
 }
 void calculateSum(const std::vector<Product>& products) {
     float sum = 0;
@@ -20,6 +53,7 @@ void calculateSum(const std::vector<Product>& products) {
 }
 
 int main() {
+
     std::vector<Product> products = {
         { "Milk", 1.20, 30 },
         { "Bread", 0.95, 15 },
@@ -38,6 +72,7 @@ int main() {
         switch (choice) {
         case 1:
             showProducts(products);
+            chooseProduct(products);
             break;
         case 2:
             calculateSum(products);
@@ -49,5 +84,6 @@ int main() {
             std::cout << "Unknown option.\n";
         }
     }
+
     return 0;
 }

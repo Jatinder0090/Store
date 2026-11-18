@@ -11,6 +11,13 @@ void showProducts(const std::vector<Product>& products) {
             << "   quantity: " << products[i].quantity << "\n";
     }
 }
+void calculateSum(const std::vector<Product>& products) {
+    float sum = 0;
+    for (size_t i = 0; i < products.size(); i++) {
+        sum += products[i].price * products[i].quantity;
+    }
+    std::cout << "the sum of all purchases is: " << sum;
+}
 
 int main() {
     std::vector<Product> products = {
@@ -23,6 +30,7 @@ int main() {
     while (choice != 0) {
         std::cout << "\n=== Store ===\n";
         std::cout << "1. Show products\n";
+        std::cout << "2. Show sum of all purchase totals \n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::cin >> choice;
@@ -30,6 +38,9 @@ int main() {
         switch (choice) {
         case 1:
             showProducts(products);
+            break;
+        case 2:
+            calculateSum(products);
             break;
         case 0:
             std::cout << "Bye!\n";

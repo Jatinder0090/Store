@@ -46,13 +46,11 @@ void chooseProduct(const std::vector<Product>& products) {
 }
 
 int main() {
-    int milkCount = 30;
-    int breadCount = 15;
-    int cheeseCount = 8;
+
     std::vector<Product> products = {
-        { "Milk", 1.20, milkCount },
-        { "Bread", 0.95, breadCount },
-        { "Cheese", 4.50, cheeseCount }
+        { "Milk", 1.20, 30 },
+        { "Bread", 0.95, 15 },
+        { "Cheese", 4.50, 8 }
     };
 
     int choice = -1;
